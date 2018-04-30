@@ -36,6 +36,9 @@ elif [[ -z $PU_USER ]]; then
 elif [[ -z $PU_MESSAGE ]]; then
         echo 'Message can not be empty. Pass message with -m'
 else
+        if [[ -z $PU_TITLE ]]; then
+                PU_TITLE="`whoami`@${HOSTNAME}"
+        fi
         curl -s \
         --form-string "token=$PU_TOKEN" \
         --form-string "user=$PU_USER" \
