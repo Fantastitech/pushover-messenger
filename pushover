@@ -1,0 +1,45 @@
+#!/bin/bash
+
+while getopts "u:k:t::m:h" OPTION
+do
+        case $OPTION in
+                u)
+                        PU_USER=$OPTARG
+                        ;;
+                k)
+                        PU_TOKEN=$OPTARG
+                        ;;
+                t)
+                        PU_TITLE=$OPTARG
+                        ;;
+                m)
+                        PU_MESSAGE=$OPTARG
+                        ;;
+                h)
+                        echo "Pushover messanger"
+                        echo "This script sends push notifications to mobile devices using the Pushover service"
+                        echo -e "You must create an account at https://Pushover.net then create an application for your messages.\n"
+                        echo "Options:"
+                        echo '-u,               Pushover user key (Can be exported as $PU_USER).'
+                        echo '-k,               Pushover application token/key (Can be exported as PU_TOKEN).'
+                        echo '-t,               Message title. If left blank, the hostname will be used.'
+                        echo '-m,               Message body. Required.'
+                        exit
+                        ;;
+        esac
+done
+
+if [[ -z $PU_TOKEN ]]; then
+        echo 'App key missing. Pass your app token/key with -k or export it as an env varialbe'
+elif [[ -z $PU_USER ]]; then
+        echo 'User key missing. Pass your user key with -u or export it as an env variable'
+elif [[ -z $PU_MESSAGE ]]; then
+        echo 'Message can not be empty. Pass message with -m'
+else
+        curl -s \
+        --form-string "token=$PU_TOKEN" \
+        --form-string "user=$PU_USER" \
+        --form-string "title=$PU_TITLE" \
+        --form-string "message=$PU_MESSAGE" \
+        https://api.pushover.net/1/messages.json
+fi
