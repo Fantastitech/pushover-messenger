@@ -22,7 +22,7 @@ do
                         PU_TITLE=$OPTARG
                         ;;
                 h)
-                        echo "Pushover messanger"
+                        echo "Pushover messenger"
                         echo -e "\tThis script sends push notifications to mobile devices using the Pushover service"
                         echo -e "\tYou must create an account at https://Pushover.net then create an application for your messages."
                         echo -e "\tPushover will accept a string, a URL, or a single line of input from stdin.\n"
