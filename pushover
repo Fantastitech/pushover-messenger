@@ -22,33 +22,35 @@ do
                         PU_TITLE=$OPTARG
                         ;;
                 h)
-                        echo "Pushover messenger"
-                        echo "This script sends push notifications to mobile devices using the Pushover service"
-                        echo -e "You must create an account at https://Pushover.net then create an application for your messages.\n"
+                        echo "Pushover messanger"
+                        echo -e "\tThis script sends push notifications to mobile devices using the Pushover service"
+                        echo -e "\tYou must create an account at https://Pushover.net then create an application for your messages."
+                        echo -e "\tPushover will accept a string, a URL, or a single line of input from stdin.\n"
                         echo -e "Usage: pushover [OPTIONS] message \n"
-                        echo "Options:"
-                        echo '-u,               Pushover user key (Can be exported as $PU_USER).'
-                        echo '-k,               Pushover application token/key (Can be exported as PU_TOKEN).'
-                        echo '-t,               Message title. If left blank, the hostname will be used.'
+                        echo -e "\tOptions:"
+                        echo -e '\t\t-u,               Pushover user key (Can be exported as $PU_USER).'
+                        echo -e '\t\t-k,               Pushover application token/key (Can be exported as PU_TOKEN).'
+                        echo -e '\t\t-t,               Message title. If left blank, user@hostname will be used.'
                         exit
                         ;;
         esac
 done
 shift "$((OPTIND - 1))"
 
-if [[ -n $1 ]]; then
-        PU_MESSAGE=$1
-elif ! [[ -t 0 ]]; then
+if ! [[ -t 0 ]]; then
         read  input
         PU_MESSAGE=$input
+elif [[ -n $1 ]]; then
+        PU_MESSAGE=$1
 fi
 
 if [[ -z $PU_TOKEN ]]; then
-        echo 'App key missing. Pass your app token/key with -k or export it as an env variable'
+        echo 'App key missing. Pass your app token/key with -k or export it as $PU_USER.'
+        echo 'Use -h for a full list of options.'
 elif [[ -z $PU_USER ]]; then
-        echo 'User key missing. Pass your user key with -u or export it as an env variable'
+        echo 'User key missing. Pass your user key with -u or export it as $PU_TOKEN.'
 elif [[ -z $PU_MESSAGE ]]; then
-        echo 'Message can not be empty. Pass message with -m'
+        echo 'Message can not be empty. Enter a message or run pushover with stdin.'
 else
         if [[ -z $PU_TITLE ]]; then
                 PU_TITLE="`whoami`@${HOSTNAME}"
