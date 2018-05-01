@@ -36,11 +36,11 @@ do
 done
 shift "$((OPTIND - 1))"
 
-if ! [[ -t 0 ]]; then
+if [[ -n $1 ]]; then
+        PU_MESSAGE=$1
+elif ! [[ -t 0 ]]; then
         read  input
         PU_MESSAGE=$input
-elif [[ -n $1 ]]; then
-        PU_MESSAGE=$1
 fi
 
 if [[ -z $PU_TOKEN ]]; then
