@@ -22,7 +22,7 @@ do
                         PU_TITLE=$OPTARG
                         ;;
                 h)
-                        echo "Pushover messanger"
+                        echo "Pushover messenger"
                         echo "This script sends push notifications to mobile devices using the Pushover service"
                         echo -e "You must create an account at https://Pushover.net then create an application for your messages.\n"
                         echo -e "Usage: pushover [OPTIONS] message \n"
@@ -44,7 +44,7 @@ elif ! [[ -t 0 ]]; then
 fi
 
 if [[ -z $PU_TOKEN ]]; then
-        echo 'App key missing. Pass your app token/key with -k or export it as an env varialbe'
+        echo 'App key missing. Pass your app token/key with -k or export it as an env variable'
 elif [[ -z $PU_USER ]]; then
         echo 'User key missing. Pass your user key with -u or export it as an env variable'
 elif [[ -z $PU_MESSAGE ]]; then
