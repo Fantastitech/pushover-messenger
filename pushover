@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Pushover push notification script
+# This script will send messages to your mobile devices
+# using the Pushover service at Pushover.net.
+# To use it, create an account on Pushover.net
+# and get a user and app key. You can pass them
+# directly or set them as env variables. Then run
+# the script with a message in quotes to send a
+# push notification to your devices from the command line
+
 while getopts "u:k:t::h" OPTION
 do
         case $OPTION in
@@ -16,7 +25,7 @@ do
                         echo "Pushover messanger"
                         echo "This script sends push notifications to mobile devices using the Pushover service"
                         echo -e "You must create an account at https://Pushover.net then create an application for your messages.\n"
-                        echo -e "Usage: pushover -[OPTIONS] message \n"
+                        echo -e "Usage: pushover [OPTIONS] message \n"
                         echo "Options:"
                         echo '-u,               Pushover user key (Can be exported as $PU_USER).'
                         echo '-k,               Pushover application token/key (Can be exported as PU_TOKEN).'
