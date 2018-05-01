@@ -36,8 +36,8 @@ do
 done
 shift "$((OPTIND - 1))"
 
-if [[ -z $1 ]]; then
-        read -t 1 input
+if ! [[ -t 0 ]]; then
+        read  input
         PU_MESSAGE=$input
 elif [[ -n $1 ]]; then
         PU_MESSAGE=$1
