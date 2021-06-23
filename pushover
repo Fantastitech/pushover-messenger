@@ -45,10 +45,10 @@ elif [[ -n $1 ]]; then
 fi
 
 if [[ -z $PU_TOKEN ]]; then
-        echo 'App key missing. Pass your app token/key with -k or export it as $PU_USER.'
+        echo 'App key missing. Pass your app token/key with -k or export it as $PU_TOKEN.'
         echo 'Use -h for a full list of options.'
 elif [[ -z $PU_USER ]]; then
-        echo 'User key missing. Pass your user key with -u or export it as $PU_TOKEN.'
+        echo 'User key missing. Pass your user key with -u or export it as $PU_USER.'
 elif [[ -z $PU_MESSAGE ]]; then
         echo 'Message can not be empty. Enter a message or run pushover with stdin.'
 else
